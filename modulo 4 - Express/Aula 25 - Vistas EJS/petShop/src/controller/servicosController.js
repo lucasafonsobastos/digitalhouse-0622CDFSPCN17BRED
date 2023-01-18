@@ -4,6 +4,7 @@ module.exports = {
     listaServicos: (req, res) => {
         const servicos = ServicoModel.index();
         //res.render('VIEW', {Objeto})
+<<<<<<< HEAD
         return res.render('servicos', {listaServicos: servicos, title: "Lista de Serviços"});
         //res.send(servicos); - UTILIZADO APENAS PARA TER UM JSON DE RESPOSTA NA PAGINA
     },
@@ -20,5 +21,12 @@ module.exports = {
 
     buscaServico: (req, res) => {
         res.send(ServicoModel.findOne(req))
+=======
+        return res.render('servicos', {
+            listaServicos: servicos,
+            title: "Lista de Serviços",
+            css: ['style copy.css']
+        })
+>>>>>>> 7fde47d7594c9c3efb7184314016bd0b6d53c9e3
     }
 }
