@@ -1,34 +1,26 @@
+const fs = require('fs');
+const path = require('path');
+
+const servicos = require("../database/servicos.json");
+
 module.exports = {
   index: () => {
-    return [
-      {
-        id: 1,
-        nome: 'Banho',
-        valor: 'R$ 30,00',
-        descricao: 'Higienização completa',
-        imagem: 'banho'
-      },
-      {
-        id: 2,
-        nome: 'Tosa',
-        valor: 'R$ 20,00',
-        descricao: 'Tosa completa',
-        imagem: 'tosa'
-      },
-      {
-        id: 3,
-        nome: 'Corte de unhas',
-        valor: 'R$ 5,00',
-        descricao: 'Corte de unhas, todas as patas',
-        imagem: 'corte-unha'
-      },
-      {
-        id: 4,
-        nome: 'Creche',
-        valor: 'R$ 50,00',
-        descricao: 'Cuidamos do seu pet',
-        imagem: 'corte-unha'
-      },
-    ]
+    return servicos;
+  },
+  createOne: (req) => {
+    let novoServico = {
+      id: servicos[servicos.length -1].id + 1,
+      nome: req.body.nome,
+      valor: req.body.valor,
+      descricao: req.body.descricao,
+      imagem: req.body.imagem
+    }
+    servicos.push(novoServico);
+    fs.writeFileSync(path.join(__dirname, "../database/servicos.json"), JSON.stringify(servicos, null, 4));
+  },
+
+  findOne: (req) => {
+    let found = servicos.find(servico => servico.id == req.query.id)
+    return found
   }
 }
