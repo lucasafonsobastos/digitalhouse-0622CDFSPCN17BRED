@@ -1,8 +1,12 @@
-const ServicoModel = require('../models/ServicoModel');
+const ServicoModel = require("../models/ServicoModel");
 
 module.exports = {
-  index: (req, res) => {
-    const servicos = ServicoModel.index();
-    return res.render('index', { servicos });
-  }
-}
+    index: (req, res) => {
+        const servicos = ServicoModel.index();
+        return res.render("index", { servicos });
+    },
+
+    loginForm: (req, res) => {
+      return res.render('login', error: [] );
+    },
+};
