@@ -4,34 +4,27 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const methodOverride = require('method-override');
-const session = require('express-session');
 
-const usuariosRouter = require('./src/routes/usuarios');
-const indexRouter = require('./src/routes/index');
-const servicosRouter = require('./src/routes/servicos');
+const indexRouter = require('./routes/index');
+const usersRouter = require('./routes/users');
+const bibliotecaRouter = require('./routes/biblioteca');
 
 const app = express();
 
 // view engine setup
-app.set('views', path.join(__dirname, './src/views'));
+app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
-app.use(session({
-  secret: '1234kadsfe;qih',
-  resave: true,
-  saveUninitialized: true
-}));
-
-app.use(methodOverride('_method'));
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(methodOverride('_method'));
 
 app.use('/', indexRouter);
-app.use('/servicos', servicosRouter);
-app.use('/usuarios', usuariosRouter);
+app.use('/users', usersRouter);
+app.use('/biblioteca', bibliotecaRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

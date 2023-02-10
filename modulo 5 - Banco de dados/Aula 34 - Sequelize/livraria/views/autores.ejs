@@ -6,10 +6,7 @@
       <h4>ID</h4>
     </div>
     <div class="column">
-      <h4>Título</h4>
-    </div>
-    <div class="column">
-      <h4>Editora</h4>
+      <h4>Nome</h4>
     </div>
     <div class="column">
       <h4>Ações</h4>
@@ -17,14 +14,13 @@
   </div>
 
   <div class="body">
-    <% livros.forEach(livro => { %>
+    <% autores.forEach(autor => { %>
       <div class="row">
-        <span class="item"><%= livro.id %></span>
-        <span class="item"><%= livro.titulo %></span>
-        <span class="item"><%= livro.editora %></span>
+        <span class="item"><%= autor.id %></span>
+        <span class="item"><%= autor.nome %></span>
         <span class="item actions">
-          <a href="/biblioteca/form/<%= livro.id %>">Editar</a>
-          <form action="/biblioteca/deletar/<%= livro.id %>?_method=DELETE" method="post">
+          <a href="/biblioteca/autores/form/<%= autor.id %>">Editar</a>
+          <form action="/biblioteca/autores/deletar/<%= autor.id %>?_method=DELETE" method="post">
             <button type="submit">Deletar</button>
           </form>
         </span>
